@@ -23,10 +23,10 @@ void setup() {
 
 void loop() {
   buttonReading = digitalRead(buttonPin);
-  
+
   if (buttonReading != lastFlickerableState) {
     Serial.println("lastFlicerableState: " + String(lastFlickerableState));
-    Serial.println("buttonReading: " + String(buttonReading)); 
+    Serial.println("buttonReading: " + String(buttonReading));
     Serial.println("flickering...");
     lastDebounceTime = millis();
     lastFlickerableState = buttonReading;
@@ -46,21 +46,22 @@ void loop() {
 
    lastSteadyState = buttonReading;
   }
-  
+
   if (on) {
     startStriker();
-  }    
+  }
+  servo1.write(0);
 }
 
 void startStriker() {
-    int position = 180;
-    int timeInBetween = 1000;
-  
+    int position = 75;
+    int timeInBetween = 4000;
+
     servo1.write(position);   // Tell servo to go to 180 degrees
 
-    delay(500);         // Pause to get it time to move
+    delay(400);         // Pause to get it time to move
 
     servo1.write(0);     // Tell servo to go to 0 degrees
 
-    delay(timeInBetween);  
+    delay(timeInBetween);
 }
